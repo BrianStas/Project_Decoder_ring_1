@@ -1,5 +1,7 @@
 // Write your tests here!
-const caesar = require("../src/caesar")
+const { expect } = require("chai");
+const { caesar } = require("../src/caesar");
+
 describe('caesar',()=>{
     it("should return false if shift > 25, < -25, or 0", ()=>{
         const runs = [26, -26, 0]
