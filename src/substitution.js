@@ -5,11 +5,47 @@
 
 const substitutionModule = (function () {
   // you can add any code you want within this function scope
+let lookup = "abcdefghijklmnopqrstuvwxyz"
 
-  function substitution(input, alphabet, encode = true) {
-    // your solution code here
+  function encoder(letter,alphabet){
+    if(lookup.indexOf(letter) < 0) {
+      return letter
+    };
+    const index = lookup.indexOf(letter);
+    return alphabet[index];
   }
 
+  function decoder(letter, alphabet){
+      if(alphabet.indexOf(letter) < 0) {
+        return letter
+      };
+      const index = alphabet.indexOf(letter);
+      return lookup[index];
+    }
+  console.log(decoder(" ", "xoyqmcgrukswaflnthdjpzibev"))
+
+  function substitution(input, alphabet, encode = true) {
+    let result = "";
+    let newInput = input.toLowerCase();
+    if(encode){
+      for(let letter of newInput){
+      result += encoder(letter, alphabet);
+    }}
+    else{
+      for(let letter of newInput)
+        result += decoder(letter, alphabet)
+      }
+    console.log(result)
+  }
+  //  substitution("thinkful", "xoyqmcgrukswaflnthdjpzibev"); //> 'jrufscpw'
+  // substitution("You are an excellent spy", "xoyqmcgrukswaflnthdjpzibev"); //> 'elp xhm xf mbymwwmfj dne'
+  // substitution("jrufscpw", "xoyqmcgrukswaflnthdjpzibev", false); //> 'thinkful'
+  
+  substitution("message", "$wae&zrdxtfcygvuhbijnokmpl"); //> "y&ii$r&"
+  // substitution("y&ii$r&", "$wae&zrdxtfcygvuhbijnokmpl", false); //> "message"
+  
+  // substitution("thinkful", "short"); //> false
+  // substitution("thinkful", "abcabcabcabcabcabcabcabcyz"); //> false
   return {
     substitution,
   };
