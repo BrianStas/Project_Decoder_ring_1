@@ -15,13 +15,14 @@ const caesarModule = (function () {
       return letter
     }
       //add the shift to the index
-    const newIndex = letterIndex + shift;
+    let newIndex = letterIndex + shift;
+    if(newIndex > 25) newIndex-=26;
+    if(newIndex < 0) newIndex+=26;
       //find the character at the shifted index and add to result
     const result = lookup.charAt(newIndex);
-    console.log(result);
     return result;
   }
-//letterSwapper("c",5)
+letterSwapper("a",-1)
   function caesar(input, shift=0, encode = true) {
     let result = "";
     //if the shift is not within 25 or 0, return false
@@ -39,9 +40,16 @@ const caesarModule = (function () {
     return result;
   }
 
-//caesar("thinkful", 3);//>'wklqnixo'
-//caesar("thinkful", -3)//>'qefkhcri'
-caesar("a b!", 3)//> "d e!"
+  // caesar("thinkful", 3); //> 'wklqnixo'
+  // caesar("thinkful", -3); //> 'qefkhcri'
+  // caesar("wklqnixo", 3, false); //> 'thinkful'
+  
+  // caesar("This is a secret message!", 8); //> 'bpqa qa i amkzmb umaaiom!'
+  // caesar("BPQA qa I amkzmb umaaiom!", 8, false); //> 'this is a secret message!'
+  
+  // caesar("thinkful"); //> false
+  // caesar("thinkful", 99); //> false
+  // caesar("thinkful", -26); //> false
 console.log(caesar("happy", 26))
   return {
     caesar,
