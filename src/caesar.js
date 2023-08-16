@@ -21,24 +21,27 @@ const caesarModule = (function () {
     console.log(result);
     return result;
   }
-letterSwapper("c",5)
+//letterSwapper("c",5)
   function caesar(input, shift=0, encode = true) {
+    let result = "";
     //if the shift is not within 25 or 0, return false
     if(shift>25 || shift<-25 || shift===0){
       return false
     }
       // if encode is false, you're shifting the opposite of what's input for the shift
     if(encode === false) shift = shift-(shift*2);
+    const trueInput = input.toLowerCase();
     //look at each character in the string one by one for each character(should be all lowercase)
-    for(let letter in input){
-      letterSwapper(letter, shift)
+    for(let letter of trueInput){
+      result += letterSwapper(letter, shift)
     }
-    return input;
+    console.log(result);
+    return result;
   }
 
 //caesar("thinkful", 3);//>'wklqnixo'
 //caesar("thinkful", -3)//>'qefkhcri'
-//caesar("a b!", 3)//> "d e!"
+caesar("a b!", 3)//> "d e!"
 console.log(caesar("happy", 26))
   return {
     caesar,
