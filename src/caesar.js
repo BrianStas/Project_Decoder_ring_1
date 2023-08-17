@@ -40,7 +40,7 @@ letterSwapper("a",-1)
     return result;
   }
 
-  // caesar("thinkful", 3); //> 'wklqnixo'
+  caesar("BUSINESS", 5); //> 'wklqnixo'
   // caesar("thinkful", -3); //> 'qefkhcri'
   // caesar("wklqnixo", 3, false); //> 'thinkful'
   

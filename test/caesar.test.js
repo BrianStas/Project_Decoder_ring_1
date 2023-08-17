@@ -13,4 +13,20 @@ describe('caesar',()=>{
         const expected = false;
         expect(actual).to.equal(expected)
     })
+    it("should ignore capital letters and return lowercase",()=>{
+        const actual = caesar("BUSINESS", 5)
+        const expected = "gzxnsjxx"
+        expect(actual).to.equal(expected)
+    })
+    it("should maintain spaces and other nonalphabetic symbols throughout the input",()=>{
+        const actual = caesar("a. b c d e!", 5)
+        const expected = "f. g h i j!"
+        expect(actual).to.equal(expected)
+    })
+    it("should wrap letters around the alphabet if the shift pushes them off",()=>{
+        const actual = caesar("xyz", 3)
+        const expected = "abc"
+        expect(actual).to.equal(expected)
+    })
+
 })

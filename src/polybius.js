@@ -117,7 +117,7 @@ const polybiusModule = (function () {
     return `${result}`
   }
 
-  // polybius("thinkful"); //> "4432423352125413"
+  // polybius("I like to eat"); //> "4432423352125413"
   // polybius("Hello world"); //> '3251131343 2543241341'
   
  polybius("3251131343 2543241341", false); //> "hello world"
