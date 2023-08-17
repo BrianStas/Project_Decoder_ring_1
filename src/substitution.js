@@ -16,36 +16,44 @@ let lookup = "abcdefghijklmnopqrstuvwxyz"
   }
 
   function decoder(letter, alphabet){
-      if(alphabet.indexOf(letter) < 0) {
-        return letter
-      };
-      const index = alphabet.indexOf(letter);
-      return lookup[index];
-    }
-  console.log(decoder(" ", "xoyqmcgrukswaflnthdjpzibev"))
+    if(alphabet.indexOf(letter) < 0) {
+      return letter
+    };
+    const index = alphabet.indexOf(letter);
+    return lookup[index];
+  }
+
+  function alphabetValidator(alphabet){
+    return new Set(alphabet).size == alphabet.length;
+  }
 
   function substitution(input, alphabet, encode = true) {
     let result = "";
-    let newInput = input.toLowerCase();
-    if(encode){
-      for(let letter of newInput){
-      result += encoder(letter, alphabet);
-    }}
-    else{
-      for(let letter of newInput)
-        result += decoder(letter, alphabet)
-      }
-    console.log(result)
+    if(!alphabet) return false;
+    if(alphabet.length !== 26) return false;
+    if(alphabetValidator(alphabet)){
+      let newInput = input.toLowerCase();
+        if(encode){
+          for(let letter of newInput){
+            result += encoder(letter, alphabet);
+      }}
+      else{
+        for(let letter of newInput)
+          result += decoder(letter, alphabet)
+      }}
+    else{return false}
+    console.log(result);
+    return result;
   }
   //  substitution("thinkful", "xoyqmcgrukswaflnthdjpzibev"); //> 'jrufscpw'
-  // substitution("You are an excellent spy", "xoyqmcgrukswaflnthdjpzibev"); //> 'elp xhm xf mbymwwmfj dne'
+  substitution("You are an excellent spy", "xoyqmcgrukswaflnthdjpzibev"); //> 'elp xhm xf mbymwwmfj dne'
   // substitution("jrufscpw", "xoyqmcgrukswaflnthdjpzibev", false); //> 'thinkful'
   
-  substitution("message", "$wae&zrdxtfcygvuhbijnokmpl"); //> "y&ii$r&"
+  // substitution("message", "$wae&zrdxtfcygvuhbijnokmpl"); //> "y&ii$r&"
   // substitution("y&ii$r&", "$wae&zrdxtfcygvuhbijnokmpl", false); //> "message"
   
-  // substitution("thinkful", "short"); //> false
-  // substitution("thinkful", "abcabcabcabcabcabcabcabcyz"); //> false
+  //  substitution("thinkful", "short"); //> false
+  //substitution("thinkful", "abcabcabcabcabcabcabcabcyz"); //> false
   return {
     substitution,
   };
